@@ -1,0 +1,16 @@
+{
+  "name": "Color Sampler",
+  "short_name": "Color Sampler",
+  "description": "Каталог выкрасов Derufa: поиск по папкам, выдача и возврат",
+  "lang": "ru",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#060704",
+  "theme_color": "#060704",
+  "icons": [
+    {"src": "favicon/favicon.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "favicon/favicon.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    {"src": "favicon/favicon.png", "sizes": "1254x1254", "type": "image/png", "purpose": "any maskable"}
+  ]
+}

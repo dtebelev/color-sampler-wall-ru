@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Color Sampler</title>
+<meta name="theme-color" content="#060704">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="favicon/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="favicon/favicon.png">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="theme-light.css">
+<script>
+  // Тема применяется до отрисовки страницы, чтобы не было мигания
+  (function(){ var t = localStorage.getItem('vykrasy-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+    var m = document.querySelector('meta[name=theme-color]'); if (m) m.content = t === 'light' ? '#F4EFE3' : '#060704'; })();
+</script>
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap head">
+    <div class="logo"><img src="favicon/favicon.png" alt=""></div>
+    <div class="brand">
+      <b>Color Sampler</b>
+      <span>Каталог · Derufa · флизелин А3</span>
+    </div>
+    <div class="head-right">
+      <div class="theme-toggle" role="group" aria-label="Тема оформления">
+        <button type="button" data-theme-set="light" aria-pressed="false" title="Светлая тема"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg><span>Светлая</span></button>
+        <button type="button" data-theme-set="dark" aria-pressed="false" title="Тёмная тема"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg><span>Тёмная</span></button>
+      </div>
+      <button class="hchip ok" id="statusChip" title="Открыть выданные"><i></i><span>Всё на месте</span></button>
+      <div class="me" id="meBox">
+        <button type="button" class="me-btn" id="meBtn" aria-haspopup="listbox" aria-expanded="false" title="Кто сейчас работает с программой">
+          <span class="me-lbl">Я</span><span class="me-name" id="meName">Выберите себя</span>
+          <svg class="me-arrow" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="me-menu" id="meMenu" role="listbox" aria-label="Менеджер" hidden></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="navbar">
+  <div class="wrap navrow">
+    <nav class="tabs" id="tabs">
+      <button data-view="search" class="active">Поиск</button>
+      <button data-view="folders">Папки</button>
+      <button data-view="loans">Выдано <span class="badge" id="loanBadge"></span></button>
+      <button data-view="add">Добавить</button>
+      <button data-view="log">Журнал</button>
+      <button data-view="settings">Настройки</button>
+    </nav>
+    <a class="help-link" href="manual.html">инструкция по применению</a>
+  </div>
+</div>
+
+<div class="wrap" id="roleNote" hidden></div>
+<main class="wrap" id="view"></main>
+
+<footer class="wrap">
+  <b>Выкрасы</b> · каталог работает без интернета · данные хранятся на этом компьютере<br>
+  <em>Не забывайте делать резервную копию</em> — Настройки → Выгрузить в Excel
+</footer>
+
+<div class="modal-backdrop" id="modal" hidden>
+  <div class="modal" role="dialog" aria-modal="true">
+    <button class="modal-close" id="modalClose" aria-label="Закрыть">✕</button>
+    <div id="modalBody"></div>
+  </div>
+</div>
+<div class="toast" id="toast" hidden></div>
+
+<script src="xlsx.full.min.js"></script>
+<script src="seed-data.js"></script>
+<script src="derufa-palette.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
